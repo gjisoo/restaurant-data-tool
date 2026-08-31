@@ -1,0 +1,24 @@
+[project]
+name = "restaurant-data-tool"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "gjisoo", email = "gsoo.se00@gmail.com" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "alembic>=1.19.1",
+    "psycopg[binary]>=3.3.4",
+    "pyproj>=3.7.2",
+    "python-dotenv>=1.2.3",
+    "requests>=2.34.2",
+    "sqlalchemy>=2.0.52",
+]
+
+[project.scripts]
+restaurant-data-tool = "restaurant_data_tool:main"
+
+[build-system]
+requires = ["uv_build>=0.12.7,<0.13.0"]
+build-backend = "uv_build"
