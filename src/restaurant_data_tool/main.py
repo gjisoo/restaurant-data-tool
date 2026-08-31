@@ -126,7 +126,6 @@ def collect_restaurants():
     with get_connection() as conn:
         with conn.cursor() as cursor:
             while True:
-                print(f"\nFetching page {page_no}...")
 
                 data = fetch_restaurants(
                     page_no=page_no,
@@ -150,22 +149,10 @@ def collect_restaurants():
 
                 conn.commit()
 
-                print(
-                    f"Page {page_no} done "
-                    f"/ total saved: {total_saved}"
-                )
-
                 if page_no * num_of_rows >= total_count:
                     break
 
                 page_no += 1
-
-    print()
-    print("=" * 50)
-    print("Collection complete")
-    print(f"Saved restaurants: {total_saved}")
-    print("=" * 50)
-
 
 def main():
     if not SERVICE_KEY:
