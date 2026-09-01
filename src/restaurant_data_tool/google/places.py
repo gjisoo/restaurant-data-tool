@@ -32,7 +32,6 @@ def search_places(
             "places.displayName,"
             "places.formattedAddress,"
             "places.location,"
-            "places.rating,"
             "places.userRatingCount"
         ),
     }
@@ -81,7 +80,6 @@ def get_place_details(
         "X-Goog-FieldMask": (
             "id,"
             "displayName,"
-            "rating,"
             "userRatingCount,"
             "reviews"
         ),
@@ -130,7 +128,6 @@ def normalize_review(
     return {
         "google_review_name": review.get("name"),
         "author_name": author.get("displayName"),
-        "rating": review.get("rating"),
         "content": text.get("text"),
         "original_content": original_text.get("text"),
         "language_code": (

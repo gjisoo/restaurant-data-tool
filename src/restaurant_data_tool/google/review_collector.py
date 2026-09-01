@@ -37,7 +37,6 @@ def save_review(
             restaurant_google_place_id,
             google_review_name,
             author_name,
-            rating,
             content,
             original_content,
             language_code,
@@ -48,7 +47,6 @@ def save_review(
             %(restaurant_google_place_id)s,
             %(google_review_name)s,
             %(author_name)s,
-            %(rating)s,
             %(content)s,
             %(original_content)s,
             %(language_code)s,
@@ -58,7 +56,6 @@ def save_review(
         ON CONFLICT (google_review_name)
         DO UPDATE SET
             author_name = EXCLUDED.author_name,
-            rating = EXCLUDED.rating,
             content = EXCLUDED.content,
             original_content = EXCLUDED.original_content,
             language_code = EXCLUDED.language_code,
@@ -115,13 +112,11 @@ def main():
                         """
                         UPDATE restaurant_google_places
                         SET
-                            rating = %(rating)s,
                             review_count = %(review_count)s,
                             updated_at = NOW()
                         WHERE id = %(id)s
                         """,
                         {
-                            "rating": place.get("rating"),
                             "review_count": place.get(
                                 "userRatingCount"
                             ),

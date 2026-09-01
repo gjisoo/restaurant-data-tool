@@ -38,8 +38,7 @@ def save_google_place(
     google_name = (
         place.get("displayName", {}).get("text")
     )
-
-    rating = place.get("rating")
+    
     review_count = place.get("userRatingCount")
 
     cursor.execute(
@@ -48,7 +47,6 @@ def save_google_place(
             restaurant_id,
             google_place_id,
             google_name,
-            rating,
             review_count,
             match_status,
             match_score,
@@ -58,7 +56,6 @@ def save_google_place(
             %(restaurant_id)s,
             %(google_place_id)s,
             %(google_name)s,
-            %(rating)s,
             %(review_count)s,
             %(match_status)s,
             %(match_score)s,
@@ -68,7 +65,6 @@ def save_google_place(
         DO UPDATE SET
             google_place_id = EXCLUDED.google_place_id,
             google_name = EXCLUDED.google_name,
-            rating = EXCLUDED.rating,
             review_count = EXCLUDED.review_count,
             match_status = EXCLUDED.match_status,
             match_score = EXCLUDED.match_score,
@@ -79,7 +75,6 @@ def save_google_place(
             "restaurant_id": restaurant_id,
             "google_place_id": google_place_id,
             "google_name": google_name,
-            "rating": rating,
             "review_count": review_count,
             "match_status": match["match_status"],
             "match_score": match["match_score"],
