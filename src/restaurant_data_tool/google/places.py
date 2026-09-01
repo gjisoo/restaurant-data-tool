@@ -119,7 +119,7 @@ def normalize_review(
     review: dict[str, Any],
 ) -> dict[str, Any]:
     """
-    Google 리뷰 데이터를 restaurant_reviews 테이블에
+    Google 리뷰 데이터를 restaurant_google_reviews 테이블에
     저장하기 쉬운 형태로 변환한다.
     """
 
@@ -128,6 +128,7 @@ def normalize_review(
     original_text = review.get("originalText") or {}
 
     return {
+        "google_review_name": review.get("name"),
         "author_name": author.get("displayName"),
         "rating": review.get("rating"),
         "content": text.get("text"),
@@ -137,4 +138,5 @@ def normalize_review(
             or text.get("languageCode")
         ),
         "published_at": review.get("publishTime"),
+        "google_maps_uri": review.get("googleMapsUri"),
     }

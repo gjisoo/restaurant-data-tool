@@ -1,9 +1,9 @@
 from datetime import datetime
 
 from restaurant_data_tool.database import get_connection
-from restaurant_data_tool.google_places import search_places
+from restaurant_data_tool.google.places import search_places
 from restaurant_data_tool.coordinates import to_wgs84
-from restaurant_data_tool.restaurant_matcher import find_best_match
+from restaurant_data_tool.google.matcher import find_best_match
 
 def get_unmatched_restaurants():
     with get_connection() as conn:
